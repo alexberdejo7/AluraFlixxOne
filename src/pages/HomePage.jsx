@@ -8,8 +8,8 @@ import { VideoContext } from '../context/VideoContext';
 const HomePage = () => {
     const { videos, deleteVideo, updateVideo } = useContext(VideoContext);
     const [selectedVideo, setSelectedVideo] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editVideo, setEditVideo] = useState(null);
+  
+   
 
     useEffect(() => {
         // Seteo del video inicial con el id: 1
@@ -44,25 +44,18 @@ const HomePage = () => {
                         <h2>{category}</h2>
                         <SectionCards>
                             {videos.filter(video => video.categoria === category).map(video => (
-                                <Card
-                                    key={video.id}
-                                    video={video}
-                                    onSelect={handleSelectVideo}
-                                    onDelete={handleDelete}
-                                    onEdit={handleEdit}
-                                />
+                               <Card
+                               key={video.id}
+                               video={video}
+                               onDelete={handleDelete}
+                               onEdit={handleEdit}
+                             />
                             ))}
                         </SectionCards>
                     </CategorySection>
                 ))}
             </Section>
-            {isModalOpen && (
-                <Modal
-                    video={editVideo}
-                    onClose={() => setIsModalOpen(false)}
-                    onSave={handleSave}
-                />
-            )}
+            
         </HomePageContainer>
     );
 };
